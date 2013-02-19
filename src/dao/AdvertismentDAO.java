@@ -8,5 +8,5 @@ public interface AdvertismentDAO {
 	
 	void update(Ad ad);
 	
-	void deleteById(Ad ad);
+	void deleteById(Long id);
 }
