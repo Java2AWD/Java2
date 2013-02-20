@@ -8,16 +8,19 @@ public class JdbcDAO {
 
 	protected Connection getConnection() {
 		try {
-			Class.forName("org.hsqldb.jdbcDriver");
+			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Where is your MySQL JDBC Driver?");
 			e.printStackTrace();
 		}
-		
+
 		try {
 
 			Connection con = DriverManager.getConnection(
-				"jdbc:hsqldb:hsql://localhost", "SA", "");
+					
+					// Sjuda piwem Login i parolj na BD Mysql
+					// Mozet bytj jest smysl vsem sdelatj polzovatelja s takimize username i parolem.
+					"jdbc:mysql://localhost:3306/advertisement","user", "password");
 			return con;
 		} catch(SQLException e) {
 			throw new RuntimeException("Can not get DB connection", e);
