@@ -13,14 +13,13 @@ import com.sun.corba.se.spi.presentation.rmi.PresentationDefaults;
 
 import domain.Ad;
 
-public class AdDAOImpl extends JdbcDAO implements  AdvertismentDAO {
+public class AdDAOImpl extends JdbcDAOMySql implements  AdvertismentDAO {
 
 	@Override
 	public Ad getById(Long id) {
 		Ad ad = new Ad();
 		try {
 		Connection con = getConnection();
-		
 		PreparedStatement prepState = con.prepareStatement("select Advertisement_id, message, date, users_id, category_id from Advertisment" + "where advertisement_id ?");
 		prepState.setLong(1, id);
 		ResultSet rs = prepState.executeQuery();

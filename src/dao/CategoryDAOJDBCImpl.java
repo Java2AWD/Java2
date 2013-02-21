@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 import domain.Category;
 
-public class CategoryDAOJDBCImpl extends JdbcDAO implements CategoryDAO {
+public class CategoryDAOJDBCImpl extends JdbcDAOMySql implements CategoryDAO {
 
 	@Override
 	public Category getById(Long id) {
