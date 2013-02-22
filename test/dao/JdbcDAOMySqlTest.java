@@ -6,6 +6,7 @@ import org.junit.Test;
 public class JdbcDAOMySqlTest {
 	@Test
 	public void getConnectionTest () {
-		Assert.assertFalse(true);
+		JdbcDAOMySql jdbc = new JdbcDAOMySql();
+		Assert.assertNotNull(jdbc.getConnection());
 	}
 }

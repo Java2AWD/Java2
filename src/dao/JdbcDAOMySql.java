@@ -20,7 +20,7 @@ public class JdbcDAOMySql {
 					
 					// Sjuda piwem Login i parolj na BD Mysql
 					// Mozet bytj jest smysl vsem sdelatj polzovatelja s takimize username i parolem.
-					"jdbc:mysql://localhost:3306/advertisement","user", "password");
+					"jdbc:mysql://localhost:3306/Advertisements","user", "password");
 			return con;
 		} catch(SQLException e) {
 			throw new RuntimeException("Can not get DB connection", e);

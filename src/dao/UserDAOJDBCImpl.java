@@ -16,15 +16,15 @@ public class UserDAOJDBCImpl extends JdbcDAOMySql implements UserDAO{
 		
 		try {
 			statement = connection.prepareStatement(
-					"INSERT INTO users (`id`, `name`, `password`, `email`, `user_description`)" +
-					"VALUES (?, ?, ?, ?, ?);");
-			statement.setString(2, user.getName());
-			statement.setString(3, makeMD5Hash(user.getPassword()));
-			statement.setString(4, user.getEmail());
-			statement.setString(5, user.getUserDescription());
+					"INSERT INTO users (id, name, password, email, user_description)" +
+					"VALUES (0, ?, ?, ?, ?)");
+			statement.setString(1, user.getName());
+			statement.setString(2, user.getPassword());
+			statement.setString(3, user.getEmail());
+			statement.setString(4, user.getUserDescription());
 			
-			ResultSet resultSet = statement.executeQuery();
-			System.out.println(resultSet.getString(1));
+			statement.executeUpdate();
+			
 			connection.close();
 		} catch (SQLException e){
 			System.out.println(e);
@@ -40,15 +40,15 @@ public class UserDAOJDBCImpl extends JdbcDAOMySql implements UserDAO{
 		try {  
 			statement = connection.prepareStatement(
 					"UPDATE users SET name = ?, password = ?, email = ?, user_description = ? "+
-					"WHERE id = ? LIMIT 1");
+					"WHERE id = ? LIMIT 1;");
 			statement.setString(1, user.getName());
 			statement.setString(2, user.getPassword());
 			statement.setString(3, user.getEmail());
 			statement.setString(4, user.getUserDescription());
 			statement.setInt(5, user.getUserId());
 			
-			ResultSet resultSet = statement.executeQuery();
-			System.out.println(resultSet.getString(1));
+			statement.executeUpdate();
+			
 			connection.close();
 			
 		} catch (SQLException e){
@@ -62,11 +62,9 @@ public class UserDAOJDBCImpl extends JdbcDAOMySql implements UserDAO{
 		PreparedStatement statement = null;
 		
 		try {
-			statement = connection.prepareStatement(
-					"SELECT * FROM users WHERE id = ?");
-			statement.setInt(1, id);
-			
+			statement = connection.prepareStatement("SELECT * FROM users WHERE id = " + id);
 			ResultSet resultSet = statement.executeQuery();
+			resultSet.next();
 			
 			User user = new User();
 			user.setUserId(resultSet.getInt("id"));
@@ -88,12 +86,10 @@ public class UserDAOJDBCImpl extends JdbcDAOMySql implements UserDAO{
 		PreparedStatement statement = null;
 		
 		try {
-			statement = connection.prepareStatement(
-					"SELECT * FROM users WHERE email = ?");
+			statement = connection.prepareStatement("SELECT * FROM users WHERE email = ?");
 			statement.setString(1, email);
-			
 			ResultSet resultSet = statement.executeQuery();
-			
+			resultSet.next();
 			User user = new User();
 			user.setUserId(resultSet.getInt("id"));
 			user.setName(resultSet.getString("name"));
@@ -114,21 +110,12 @@ public class UserDAOJDBCImpl extends JdbcDAOMySql implements UserDAO{
 		PreparedStatement statement = null;
 		
 		try {
-			statement = connection.prepareStatement(
-					"DELETE FROM users WHERE id = ?");
-			statement.setInt(1, id);
-			
-			ResultSet resultSet = statement.executeQuery();
-			System.out.println(resultSet.getString(1));
+			statement = connection.prepareStatement("DELETE FROM users WHERE id = " + id);
+			statement.executeUpdate();
 			return true;
 		} catch (SQLException e){
 			System.out.println(e);
 		}
 		return false;
-	}
-	
-	private String makeMD5Hash(String password) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
