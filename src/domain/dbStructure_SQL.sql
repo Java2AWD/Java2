@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `advertisement`
 --
 
-CREATE TABLE IF NOT EXISTS `advertisement` (
+CREATE TABLE IF NOT EXISTS `advertisements` (
   `advertisement_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `message` text NOT NULL,
   `date` date NOT NULL,
