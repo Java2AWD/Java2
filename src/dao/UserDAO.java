@@ -1,16 +1,16 @@
 package dao;
 
+import java.sql.SQLException;
+
 import domain.User;
 
 public interface UserDAO {
 	/**
 	 * Create user in database.
-	 * @param username - username for user
-	 * @param password - password for user (should be hashed with MD5)
-	 * @param userDescription - description of a user.
+	 * @param user User object to insert into database.
 	 * @return user id number from database, null if creation failed.
 	 */
-	public int createUser(String username, String password, String userDescription);
+	public void createUser(User user) throws SQLException;
 	/**
 	 * Updates user entry in database.
 	 * @param user modified User object to save. 
@@ -24,11 +24,11 @@ public interface UserDAO {
 	 */
 	public User getUserById(int id);
 	/**
-	 * Gets user from database by user name.
-	 * @param name - user name.
+	 * Gets user from database by user email.
+	 * @param email - user name.
 	 * @return - User object on success or null on fail.
 	 */
-	public User getUserByName(String name);
+	public User getUserByEmail(String email);
 	/**
 	 * Remove user from database by it`s user id.
 	 * @param id - id number of user.
