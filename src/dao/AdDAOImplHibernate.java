@@ -9,11 +9,11 @@ import org.hibernate.cfg.Configuration;
 import domain.Ad;
 
 
-public class AdDAOImplHibernate extends JdbcDAOMySql implements AdvertismentDAO {
+public class AdDAOImplHibernate extends HibernateUtil implements AdvertismentDAO {
 
 	@Override
 	public Ad getById(Long id) {
-		
+	
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Ad ad = (Ad) session.get(Ad.class, id);
 		session.close();
@@ -23,11 +23,11 @@ public class AdDAOImplHibernate extends JdbcDAOMySql implements AdvertismentDAO 
 	@Override
 	public void save(Ad ad) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
+		
 		Transaction trans = null;
 		try{ 
 	    trans = session.beginTransaction();
 	    session.save(ad);
-	    trans.commit();
 	    trans.commit();
 		} catch (HibernateException e) {
 			trans.rollback();
@@ -41,7 +41,7 @@ public class AdDAOImplHibernate extends JdbcDAOMySql implements AdvertismentDAO 
 		Transaction trans = null;
 		try{
 		trans = session.beginTransaction();
-		session.saveOrUpdate(ad);
+		session.update(ad);
 		trans.commit();
 	} catch (HibernateException e) {
 		trans.rollback();
@@ -57,10 +57,7 @@ public class AdDAOImplHibernate extends JdbcDAOMySql implements AdvertismentDAO 
 		Transaction trans = null;
 		try{
 		trans = session.beginTransaction();
-		
-		
-	Ad ad = (Ad) session.get(Ad.class,id);
-		session.delete(ad);
+		session.delete(id);
 		trans.commit();
 		} catch (HibernateException e) {
 			trans.rollback();
