@@ -45,7 +45,8 @@ public class UserDAOHibernateImplTest {
 		user.setName("Vasilij");
 		user.setPassword("Pupkin");
 		user.setEmail("user@to.remove");
-		user.setUserDescription("As big as kilimanjaro...");
+		String user_description = new Date().toString();
+		user.setUserDescription(user_description);
 		try {
 			dao.createUser(user);
 		} catch (SQLException e) {
