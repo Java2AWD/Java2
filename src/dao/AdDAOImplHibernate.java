@@ -22,7 +22,9 @@ public class AdDAOImplHibernate extends HibernateUtil implements AdvertismentDAO
 
 	@Override
 	public void save(Ad ad) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		SessionFactory sessionFactory =
+				HibernateUtil.getSessionFactory();
+		Session session = sessionFactory.openSession();
 		
 		Transaction trans = null;
 		try{ 

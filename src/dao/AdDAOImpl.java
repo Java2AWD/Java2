@@ -46,10 +46,10 @@ public class AdDAOImpl extends JdbcDAOMySql implements  AdvertismentDAO {
 		Connection con = getConnection();
 		PreparedStatement prepState = con.prepareStatement
 				("inset into Advertisment (advertisement_id, message, date, users_id, category_id )"
-						+ "values (?,?,?,?,?)" );
+						+ "values (?,?,curdate(),?,?)" );
 		prepState.setLong(1, ad.getAdId());
 		prepState.setString(2, ad.getMessage());
-		prepState.setDate(3, (Date) ad.getDate());
+		//prepState.setDate(3, (Date) ad.getDate());
 		prepState.setLong(4, ad.getUsers_id());
 		prepState.setLong(5, ad.getCategory_id());
 		prepState.executeQuery();
