@@ -36,12 +36,25 @@ public class AdDAOImplHibernateTest {
 
 	@Test
 	public final void testUpdate() {
+		Ad ad = new Ad();
+		int id = 777;
+		ad.setCategory_id(id);
+		ad.setAdId(89);
+		ad.setMessage("update");
+		Date date = new Date();
+		ad.setDate(date);
+		dao.update(ad);
+		Ad fromBD = dao.getById(89);
+		assertEquals(777, fromBD.getCategory_id());
 		;
 	}
 
 	@Test
 	public final void testDeleteById() {
-		fail("Not yet implemented");
+		int id = 189;
+		dao.deleteById(id);
+		//Ad fromBD = dao.getById(555);
+	//	assertEquals(null, fromBD.getAdId());
 	}
 
 }

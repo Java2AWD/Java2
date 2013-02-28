@@ -6,7 +6,7 @@
     <class name="domain.Ad" table="Advertisement">
         <id name="adId" type="int">
             <column name="Advertisement_id" />
-            <generator class="assigned" />
+            <generator class="native" />
         </id>
         <property name="message" type="java.lang.String">
             <column name="MESSAGE" />
