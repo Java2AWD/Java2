@@ -4,10 +4,10 @@ import java.util.Date;
 
 public class Ad {
 
-	public long getAdId() {
+	public int getAdId() {
 		return adId;
 	}
-	public void setAdId(long adId) {
+	public void setAdId(int adId) {
 		this.adId = adId;
 	}
 	public String getMessage() {
@@ -22,23 +22,23 @@ public class Ad {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public long getUsers_id() {
+	public int getUsers_id() {
 		return user_id;
 	}
-	public void setUsers_id(long users_id) {
+	public void setUsers_id(int users_id) {
 		this.user_id = users_id;
 	}
-	public long getCategory_id() {
+	public int getCategory_id() {
 		return category_id;
 	}
-	public void setCategory_id(long category_id) {
+	public void setCategory_id(int category_id) {
 		this.category_id = category_id;
 	}
-	private long adId;
+	private int adId;
 	private String message;
 	private Date date;
-	private long user_id;
-	private long category_id;
+	private int user_id;
+	private int category_id;
 	
 
 }

@@ -12,7 +12,7 @@ import domain.Ad;
 public class AdDAOImplHibernate extends HibernateUtil implements AdvertismentDAO {
 
 	@Override
-	public Ad getById(Long id) {
+	public Ad getById(int id) {
 	
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Ad ad = (Ad) session.get(Ad.class, id);
@@ -53,7 +53,7 @@ public class AdDAOImplHibernate extends HibernateUtil implements AdvertismentDAO
 	}
 
 	@Override
-	public void deleteById(Long id) {
+	public void deleteById(int id) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction trans = null;
