@@ -3,9 +3,9 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Feb 21, 2013 1:57:44 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="domain.Ad" table="Advertisments">
+    <class name="domain.Ad" table="Advertisement">
         <id name="adId" type="long">
-            <column name="ADID" />
+            <column name="Advertisement_id" />
             <generator class="native" />
         </id>
         <property name="message" type="java.lang.String">
@@ -14,8 +14,8 @@
         <property name="date" type="java.util.Date">
             <column name="DATE" />
         </property>
-        <property name="users_id" type="long">
-            <column name="USERS_ID" />
+        <property name="user_id" type="long">
+            <column name="USERs_ID" />
         </property>
         <property name="category_id" type="long">
             <column name="CATEGORY_ID" />

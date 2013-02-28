@@ -8,15 +8,19 @@ import domain.Ad;
 
 public class AdDAOImplHibernateTest {
 
+	AdvertismentDAO dao = new AdDAOImplHibernate();
 	@Test
 	public final void testGetById() {
-		fail("Not yet implemented");
+		Ad ad = new Ad();
+		ad=dao.getById((long) 89);
+		System.out.println(ad.getCategory_id());
+			assertEquals(1, ad.getCategory_id());
 	}
 
 	@Test
 	public final void testSave() {
 		
-		AdvertismentDAO dao = new AdDAOImplHibernate(); 
+		 
 		Ad ad = new Ad();
 		ad.setMessage("privet from hibernate");
 		ad.setUsers_id(3);
@@ -29,7 +33,7 @@ public class AdDAOImplHibernateTest {
 
 	@Test
 	public final void testUpdate() {
-		fail("Not yet implemented");
+		;
 	}
 
 	@Test
