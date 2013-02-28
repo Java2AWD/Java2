@@ -2,6 +2,8 @@ package dao;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
 import org.junit.Test;
 
 import domain.Ad;
@@ -16,15 +18,17 @@ public class AdDAOImplHibernateTest {
 	@Test
 	public final void testSave() {
 		
-		AdvertismentDAO dao = new AdDAOImplHibernate(); 
+		AdDAOImplHibernate dao = new AdDAOImplHibernate(); 
+		Date date = new Date();
 		Ad ad = new Ad();
 		ad.setMessage("privet from hibernate");
 		ad.setUsers_id(3);
 		ad.setCategory_id(3);
+		ad.setDate(date);
 		dao.save(ad);
 		
-		Ad fromDB = dao.getById((long) 2);
-		assertEquals("3", fromDB.getUsers_id() );
+		Ad fromDB = dao.getById(89);
+		assertEquals("123", fromDB.getUsers_id() );
 	}
 
 	@Test

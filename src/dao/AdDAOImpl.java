@@ -16,7 +16,7 @@ import domain.Ad;
 public class AdDAOImpl extends JdbcDAOMySql implements  AdvertismentDAO {
 
 	@Override
-	public Ad getById(Long id) {
+	public Ad getById(int id) {
 		Ad ad = new Ad();
 		try {
 		Connection con = getConnection();
@@ -24,11 +24,11 @@ public class AdDAOImpl extends JdbcDAOMySql implements  AdvertismentDAO {
 		prepState.setLong(1, id);
 		ResultSet rs = prepState.executeQuery();
 		rs.next();
-		ad.setAdId(rs.getLong(1));
+		ad.setAdId(rs.getInt(1));
 		ad.setMessage(rs.getString(2));
 		ad.setDate(rs.getDate(3));
-		ad.setUsers_id(rs.getLong(4));
-		ad.setCategory_id(rs.getLong(5));
+		ad.setUsers_id(rs.getInt(4));
+		ad.setCategory_id(rs.getInt(5));
 	
 		con.close();
 		prepState.close();
@@ -56,8 +56,8 @@ public class AdDAOImpl extends JdbcDAOMySql implements  AdvertismentDAO {
 		
 		ResultSet rs = prepState.getGeneratedKeys();
 		rs.next();
-		long id =rs.getLong(1);
-		ad.setAdId(rs.getLong((int) id));
+		int id =rs.getInt(1);
+		ad.setAdId(rs.getInt( id));
 		
 		con.close();
 		prepState.close();
@@ -75,11 +75,11 @@ public class AdDAOImpl extends JdbcDAOMySql implements  AdvertismentDAO {
 		Connection con = getConnection();
 			PreparedStatement prepState = 	con.prepareStatement("update Advertisement set advertisement_id =?, set message= ?, set date= ?, set users_id =?, set category_id= ? where pk = ? ");
 		
-			prepState.setLong(1, ad.getAdId());
+			prepState.setInt(1, ad.getAdId());
 			prepState.setString(2, ad.getMessage());
 			prepState.setDate(3, (Date) ad.getDate());
-			prepState.setLong(4, ad.getUsers_id());
-			prepState.setLong(5, ad.getCategory_id());
+			prepState.setInt(4, ad.getUsers_id());
+			prepState.setInt(5, ad.getCategory_id());
 			
 			prepState.executeQuery();
 		
@@ -88,12 +88,12 @@ public class AdDAOImpl extends JdbcDAOMySql implements  AdvertismentDAO {
 	}
 
 	@Override
-	public void deleteById(Long id) {
+	public void deleteById(int id) {
 		try
 		{
 		Connection con = getConnection();
 		PreparedStatement prepState = con.prepareStatement("delete from users where pk = ?");
-		prepState.setLong(1, id);
+		prepState.setInt(1, id);
 		con.close();
 		prepState.close();
 			

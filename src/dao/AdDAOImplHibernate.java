@@ -12,9 +12,9 @@ import domain.Ad;
 public class AdDAOImplHibernate extends HibernateUtil implements AdvertismentDAO {
 
 	@Override
-	public Ad getById(Long id) {
+	public Ad getById(int id) {
 	
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		Session session = getSessionFactory().openSession();
 		Ad ad = (Ad) session.get(Ad.class, id);
 		session.close();
 		return ad;
@@ -22,24 +22,21 @@ public class AdDAOImplHibernate extends HibernateUtil implements AdvertismentDAO
 
 	@Override
 	public void save(Ad ad) {
-		SessionFactory sessionFactory =
-				HibernateUtil.getSessionFactory();
-		Session session = sessionFactory.openSession();
-		
-		Transaction trans = null;
+		Session session = getSessionFactory().openSession();
+		Transaction transaction = null;
 		try{ 
-	    trans = session.beginTransaction();
+	    transaction = session.beginTransaction();
 	    session.save(ad);
-	    trans.commit();
+	    transaction.commit();
 		} catch (HibernateException e) {
-			trans.rollback();
+			transaction.rollback();
 			e.printStackTrace();
 		}
 	    session.close();	}
 
 	@Override
 	public void update(Ad ad) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		Session session = getSessionFactory().openSession();
 		Transaction trans = null;
 		try{
 		trans = session.beginTransaction();
@@ -53,9 +50,9 @@ public class AdDAOImplHibernate extends HibernateUtil implements AdvertismentDAO
 	}
 
 	@Override
-	public void deleteById(Long id) {
+	public void deleteById(int id) {
 		
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		Session session = getSessionFactory().openSession();
 		Transaction trans = null;
 		try{
 		trans = session.beginTransaction();
