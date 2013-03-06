@@ -1,5 +1,9 @@
 package dao;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -36,9 +40,8 @@ public class AdDAOImplHibernate extends HibernateUtil implements
 	public void save(Ad ad) {
 		
 		TransactExecute te = new TransactExecute();
-		te.executeTransact(task);
 		SessionFactory sessionFactory = te.getCurrentSession();
-		te.getCurrentSession().openSession().save(ad);
+		sessionFactory.getCurrentSession().save(ad);
 			//session.save(ad);
 		}
 		
@@ -75,5 +78,18 @@ public class AdDAOImplHibernate extends HibernateUtil implements
 		}
 		session.close();
 	}
-
+	@Override
+public Collection getAllAds()
+{
+	List ads = new ArrayList<Ad>();
+	Session session =HibernateUtil.getSessionFactory().openSession();
+	session.beginTransaction();
+	ads = session.createCriteria(Ad.class).list();
+	if(session!=null && session.isOpen())
+	{
+		session.close();
+	}
+	
+	return ads;
+}
 }

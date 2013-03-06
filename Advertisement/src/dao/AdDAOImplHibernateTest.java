@@ -2,9 +2,13 @@ package dao;
 
 import static org.junit.Assert.*;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
 
 import org.junit.Test;
+
+import utils.TransactExecute;
 
 import domain.Ad;
 
@@ -22,7 +26,7 @@ public class AdDAOImplHibernateTest {
 	@Test
 	public final void testSave() {
 		
-		 Date date = new Date();
+		Date date = new Date();
 		Ad ad = new Ad();
 		ad.setMessage(" hibernate");
 		ad.setUsers_id(4);
@@ -51,11 +55,22 @@ public class AdDAOImplHibernateTest {
 	}
 
 	@Test
-	public final void testDeleteById() {
+	public  void testDeleteById() {
 		int id = 189;
 		dao.deleteById(id);
 		//Ad fromBD = dao.getById(555);
 	//	assertEquals(null, fromBD.getAdId());
+	}
+	@Test
+	public final void testGetAllAds()
+	{
+		Collection ads =dao.getAllAds();
+		Iterator iterator = ads.iterator();
+		while(iterator.hasNext())
+		{
+			Ad ad = (Ad) iterator.next();
+			System.out.println(ad.getAdId() + ad.getMessage() + ad.getDate() + ad.getUsers_id() + ad.getCategory_id());
+		}
 	}
 
 }

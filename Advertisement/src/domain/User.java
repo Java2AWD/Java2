@@ -1,11 +1,23 @@
 package domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class User {
 	private int userId;
 	private String name;
 	private String password;
 	private String email;
 	private String userDescription;
+	private Set ads = new HashSet();
+	
+	
+	public Set getAds() {
+		return ads;
+	}
+	public void setAds(Set ads) {
+		this.ads = ads;
+	}
 	public int getUserId() {
 		return userId;
 	}

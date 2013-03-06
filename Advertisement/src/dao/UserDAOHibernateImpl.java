@@ -1,6 +1,11 @@
 package dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -104,5 +109,25 @@ public class UserDAOHibernateImpl extends HibernateUtil implements UserDAO {
 		
 		
 		return user;
+	}
+	public Collection getAllAds ()
+	{
+		Session session = null;
+		List ads = new ArrayList<Ad>();
+		
+		try{
+			
+			session = HibernateUtil.getSessionFactory().openSession();
+			 ads = session.createCriteria(Ad.class).list();
+		} catch (Exception e)
+		{
+			JOptionPane.showMessageDialog(null,  e.getMessage(), " Error get list", JOptionPane.OK_OPTION);	
+		}
+		finally {
+			if(session !=null && session.isOpen()){
+				session.close();
+			}
+		}
+		return ads;
 	}
 }
