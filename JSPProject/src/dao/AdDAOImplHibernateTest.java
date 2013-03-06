@@ -93,7 +93,7 @@ public class AdDAOImplHibernateTest {
 
 			@Override
 			public void execute() {
-				int id = 791;
+				int id = 796;
 				dao.deleteById(id);
 				//Ad fromBD = dao.getById(id);
 				//assertEquals(null, fromBD.getAdId());

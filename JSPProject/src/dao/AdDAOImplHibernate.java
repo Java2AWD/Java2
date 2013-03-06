@@ -79,11 +79,11 @@ public class AdDAOImplHibernate extends HibernateUtil implements
 	public List<Ad> getAllMessagesByCategoryId(int category_id) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		List<Ad> adsList = new ArrayList<Ad>();
-		int implTest = te.getCurrentSession().getSessionFactoryOptions().hashCode();
 		String hql = "from Ad where category_id =:category_id";
 		Query query = session.createQuery(hql);
 		query.setInteger("category_id", category_id);
 		adsList=query.list();
+		//session.getTransaction().commit();
 		return adsList;
 
 
