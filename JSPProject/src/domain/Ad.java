@@ -22,6 +22,13 @@ public class Ad {
 	public Date getDate() {
 		return date;
 	}
+	private User user;
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public void setDate(Date date) {
 		this.date = date;
 	}

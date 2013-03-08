@@ -20,5 +20,9 @@
         <property name="category_id" type="int">
             <column name="CATEGORY_ID" />
         </property>
+        
+        <many-to-one name="users" class="domain.User" fetch ="select">
+			<column name="users_id" not-null="true" />
+		</many-to-one>
     </class>
 </hibernate-mapping>
