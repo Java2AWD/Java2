@@ -5,12 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.management.RuntimeErrorException;
-
-import com.sun.corba.se.spi.presentation.rmi.PresentationDefaults;
-
-
-
 import domain.Ad;
 
 public class AdDAOImpl extends JdbcDAOMySql implements  AdvertismentDAO {

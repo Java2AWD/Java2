@@ -3,6 +3,7 @@ package dao;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+@SuppressWarnings("deprecation")
 public class HibernateUtil {
 	private  final static SessionFactory sessionFactory;
 	static {
