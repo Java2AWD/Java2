@@ -4,10 +4,11 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
+import java.util.List;
 
 import javax.management.RuntimeErrorException;
 
-import com.sun.corba.se.spi.presentation.rmi.PresentationDefaults;
 
 
 
@@ -40,7 +41,7 @@ public class AdDAOImpl extends JdbcDAOMySql implements  AdvertismentDAO {
 	}
 
 	@Override
-	public void save(Ad ad) {
+	public int create(Ad ad) {
 		
 		try{
 		Connection con = getConnection();
@@ -66,6 +67,7 @@ public class AdDAOImpl extends JdbcDAOMySql implements  AdvertismentDAO {
 		}catch (SQLException e) {
 			throw new RuntimeException ("Cant save data in DB",e);
 		}
+		return 0;
 		
 	}
 
@@ -100,6 +102,20 @@ public class AdDAOImpl extends JdbcDAOMySql implements  AdvertismentDAO {
 		}catch (SQLException e) {
 			throw new RuntimeException("Can`t delete data from DB", e);}
 		
+	}
+
+	
+
+	@Override
+	public List<Ad> getAllMessagesByUserId(int user_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Ad> getAllMessagesByCategoryId(int category_id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

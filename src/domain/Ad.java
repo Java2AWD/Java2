@@ -1,6 +1,9 @@
 package domain;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Ad {
 
@@ -39,6 +42,13 @@ public class Ad {
 	private Date date;
 	private int user_id;
 	private int category_id;
+	private Set<Ad> ads = new HashSet<Ad>();
 	
+	public Set<Ad> getAds() {
+		return ads;
+	}
+	public void setAds(Set<Ad> ads) {
+		this.ads = ads;
+	}
 
 }
