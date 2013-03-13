@@ -1,4 +1,4 @@
-package mvc.controllers;
+package controllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -7,15 +7,15 @@ import dao.UserDAO;
 import dao.UserDAOHibernateImpl;
 import domain.User;
 
-import mvc.models.IModel;
-import mvc.models.LoginModel;
+import models.IModel;
+import models.UserModel;
 
-public class LoginController implements Controller {
+public class LoginController implements IController {
 
 	@Override
 	public void execute(IModel model, HttpServletRequest request) {
 
-		LoginModel loginModel = (LoginModel) model;
+		UserModel loginModel = (UserModel) model;
 		String username = loginModel.getUsername();
 		String password = loginModel.getPassword();
 
@@ -38,5 +38,13 @@ public class LoginController implements Controller {
 			}
 		}
 	}
+
+	@Override
+	public String getRedirectUrl() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 }

@@ -35,4 +35,6 @@ public interface UserDAO {
 	 * @return - true if success, false if deletion failed.
 	 */
 	public boolean removeUser(int id);
+	
+	public boolean authorized(String username, String password);
 }

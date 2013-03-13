@@ -118,4 +118,12 @@ public class UserDAOJDBCImpl extends JdbcDAOMySql implements UserDAO{
 		}
 		return false;
 	}
+
+
+
+	@Override
+	public boolean authorized(String username, String password) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

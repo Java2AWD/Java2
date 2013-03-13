@@ -1,21 +1,21 @@
-package mvc.controllers;
+package controllers;
 
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import models.IModel;
+import models.UserModel;
 import dao.UserDAO;
 import dao.UserDAOHibernateImpl;
 
-import mvc.models.IModel;
-import mvc.models.RegisterModel;
 
-public class RegisterController  implements Controller {
+public class RegisterController implements IController {
 
 	@Override
 	public void execute(IModel model, HttpServletRequest request) {
 
-		RegisterModel registerModel = (RegisterModel) model;
+		UserModel registerModel = (UserModel) model;
 		String requestMethod = request.getMethod();
 
 		if (requestMethod.equals("POST")) {
@@ -34,7 +34,7 @@ public class RegisterController  implements Controller {
 		}
 	}
 
-	public boolean validateModel(RegisterModel model) {
+	public boolean validateModel(UserModel model) {
 
 		boolean isValid = true;
 
@@ -56,4 +56,11 @@ public class RegisterController  implements Controller {
 		
 		return isValid;
 	}
+
+	@Override
+	public String getRedirectUrl() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

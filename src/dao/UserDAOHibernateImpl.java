@@ -97,4 +97,26 @@ public class UserDAOHibernateImpl extends HibernateUtil implements UserDAO {
 		return false;
 	}
 
+
+	@Override
+	public boolean authorized(String username, String password) {
+		Session session = getSessionFactory().openSession();
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			User user = (User) session.createCriteria(User.class)
+					.add(Restrictions.eq("name", username)).list().get(0);	
+			
+				if(user.getPassword().equals(password)){
+					transaction.commit();
+					session.close();
+					return true;
+				}
+			session.close();
+			return false;		
+		} catch (HibernateException e) {
+			throw new RuntimeException(" Incorrect password or username ", e);
+		}
+	}
+
 }
